@@ -8,7 +8,7 @@ class get_load_avg():
 	def __init__(self,arg):
 		self.snmpcmd = arg
 	def get_load_avg1(self):
-		state,loadavg = cmd.getstatusoutput(snmpcmd)
+		state,loadavg = cmd.getstatusoutput(self.snmpcmd)
 		if state == 0:
 			loadavg1 = loadavg.split('\n')[0].split()[3].replace('"','')
 				#loadavg5 = loadavg.split('\n')[1].split()[3].replace('"','')
@@ -21,7 +21,7 @@ class get_load_avg():
 			sys.exit(1)
 		return loadavg1
 	def get_load_avg5(self):
-		state,loadavg = cmd.getstatusoutput(snmpcmd)
+		state,loadavg = cmd.getstatusoutput(self.snmpcmd)
 		if state == 0:
 			#loadavg5 = loadavg.split('\n')[0].split()[3].replace('"','')
 			loadavg5 = loadavg.split('\n')[1].split()[3].replace('"','')
@@ -34,7 +34,7 @@ class get_load_avg():
 			sys.exit(1)
 		return loadavg5
 	def get_load_avg15(self):
-		state,loadavg = cmd.getstatusoutput(snmpcmd)
+		state,loadavg = cmd.getstatusoutput(self.snmpcmd)
 		if state == 0:
 			#loadavg5 = loadavg.split('\n')[0].split()[3].replace('"','')
 			#loadavg5 = loadavg.split('\n')[1].split()[3].replace('"','')
