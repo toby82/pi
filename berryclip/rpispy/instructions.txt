@@ -1,0 +1,193 @@
+--------------------------------------
+    ___                   ________
+   / _ )___ __________ __/ ___/ (_)__
+  / _  / -_) __/ __/ // / /__/ / / _ \
+ /____/\__/_/ /_/  \_, /\___/_/_/ .__/
+                  /___/        /_/
+
+       BerryClip - 6 LED Board
+
+--------------------------------------
+
+Introduction
+=============================
+
+The BerryClip is a simple, cheap and easy to use add-on board for the Raspberry Pi. It plugs 
+directly onto the Pi's GPIO header and provides 6 coloured LEDs, 1 Buzzer and 1 Switch. It
+can be controlled using any programming language that can manipulate the GPIO pins.
+
+The kit includes the following parts :
+
+- 1 PCB
+- 1 26-way header
+- 2 Red LEDs
+- 2 Yellow LEDs
+- 2 Green LEDs
+- 1 Buzzer
+- 1 Switch
+- 6 330 ohm resistors
+- 1 1K ohm resistor
+- 1 10K ohm resistor
+
+Resistor Colour Codes
+=============================
+
+330 ohm - Orange-Orange-Brown
+ 1K ohm - Brown-Black-Red
+10K ohm - Brown-Black-Orange
+
+Assembly Instructions
+=============================
+
+The PCB is labelled to identify where each component should be placed.
+
+P1     : 26-way header
+Buzz1  : 5v buzzer
+S1     : Micro-switch
+R1-R6  : 330 ohm (Orange-Orange-Brown)
+R7     : 1K ohm (Brown-Black-Red)
+R8     : 10K ohm (Brown-Black-Orange)
+LED1,2 : Red LEDs
+LED3,4 : Yellow LEDs
+LED5,6 : Green LEDs
+
+Note 1:  Take care to ensure the 1K and 10K resistors are placed in the correct positions.
+Note 2:  Take a look at the photos to ensure you solder the 26 way header onto the correct side of the board.
+Note 3:  The LEDs have a short leg (Cathode) and long leg (anode).
+         Make sure the long leg is inserted into the hole nearest the P1 Header.
+         The short leg should be inserted into the hole nearest the resistor.
+
+Soldering
+=============================
+
+If you have never soldered before or you need a quick refresher then I can recommend the "Soldering Is Easy" comic :
+http://mightyohm.com/files/soldercomic/FullSolderComic_EN.pdf
+
+or this SparkFun page :
+http://www.sparkfun.com/tutorials/106
+
+Recommended Soldering Sequence :
+ - Solder 1 26-way header
+ - Solder 8 resistors
+ - Solder 6 LEDs
+ - Solder 1 switch
+ - Solder 1 buzzer
+
+When soldering the header make sure you don't use too much solder or you may short-circuit the pins underneath the PCB.
+ 
+Once the components are soldered :
+ - Visually check your solder joints and ensure there are no stray blobs or splashes of solder that might short-circuit any pins.
+ - Remove the label on the buzzer.
+ - Stick rubber bumper to underside of board so it will rest on large silver capacitor (C6) on the Raspberry Pi.
+ - If possible use a multimeter to check there are no short-circuits between adjacent header pins.
+
+Plug the board onto your Raspberry Pi. Stand back and admire your work.
+
+Raspberry Pi Setup
+=============================
+
+Prepare Raspbian image using official download from raspberrypi.org
+
+Boot Pi and login with default username and password ('pi' and 'raspberry')
+
+You will now be located in the 'pi' user home directory ('/home/pi/').
+
+Type the following commands where [ENTER] means press the Enter key :
+ 
+  mkdir berryclip [ENTER]
+  cd berryclip [ENTER]
+  wget https://bitbucket.org/MattHawkinsUK/rpispy-berryclip/get/master.tar.gz [ENTER]
+  tar -xvf master.tar.gz --strip 1  [ENTER]
+
+The above lines perform the following functions :
+  - Makes a new directory called 'berryclip'
+  - Moves into that directory
+  - Grabs an archive of all the files from BitBucket
+  - Extracts the files
+
+The script will download an instruction file and a set of example Python scripts.
+
+To list the downloaded files type :
+
+  ls -l
+
+You can use the following command to remove the gz archive as we don't need that now we have extracted the files :
+
+  rm master.tar.gz
+
+
+Run Some Example Scripts
+=============================
+
+berryclip_01.py - Test LEDs only
+berryclip_02.py - Test Buzzer only
+berryclip_03.py - Test Switch only
+berryclip_04.py - Test LEDs and Switch
+berryclip_05.py - Test LEDs, Buzzer and Switch
+berryclip_06.py - LED sequence
+berryclip_07.py - Dice Simulator
+berryclip_08.py - Reaction time game
+berryclip_09.py - Random LEDs
+berryclip_10.py - Multiple LED sequences in a loop
+berryclip_11.py - Traffic light simulator
+berryclip_12.py - Morse code generator
+
+To run a script you can use the following command :
+
+  sudo python berryclip_01.py [ENTER]
+
+To quit a running Python script use [CTRL-C].
+
+To view a text file or Python script you can use the command :
+
+  cat berryclip_01.py
+
+
+Other Useful Linux Commands
+=============================
+
+To list the files in the current directory use :
+
+  ls [ENTER]
+
+To list the files in the current directory in columns use :
+
+  ls -l [ENTER]
+
+To edit a script use :
+
+  nano berryclip_01.py [ENTER]
+
+to save changes and quit use [CTRL-X], then [Y] then [ENTER]
+
+To copy a script to a new filename use :
+
+  cp berryclip_01.py my_first_script.py
+
+To reboot the Pi :
+
+  sudo reboot [ENTER]
+
+To shutdown the Pi :
+
+  sudo halt [ENTER]
+
+and wait for the lights on the Pi to stop changing (usually about 20 seconds) before removing the power cable.
+
+If you are using Putty on another computer to access your Pi over a network without a monitor attached you can cut-n-paste these commands. Select the command, copy and use a right-mouse click in Putty to insert the command onto the command line.
+
+Hardware Reference
+=============================
+
+LED 1  - Pin 7  - GPIO4
+LED 2  - Pin 11 - GPIO17
+LED 3  - Pin 15 - GPIO22
+LED 4  - Pin 19 - GPIO10
+LED 5  - Pin 21 - GPIO9
+LED 6  - Pin 23 - GPIO11
+Buzzer - Pin 24 - GPIO8
+Switch - Pin 26 - GPIO7
+
+--------------------------------------
+Copyright 2013 Matt Hawkins
+--------------------------------------
