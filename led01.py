@@ -45,7 +45,7 @@ class get_load_avg():
 	
 	
 
-def	blinkon(pin):
+def blinkon(pin):
 	GPIO.setup(pin,GPIO.OUT)
 	GPIO.output(pin,GPIO.HIGH)
 	
@@ -53,7 +53,7 @@ def blinkoff(pin):
 	GPIO.setup(pin,GPIO.OUT)
 	GPIO.output(pin,GPIO.LOW)
 
-def	buzzeron(pin):
+def buzzeron(pin):
 	GPIO.setup(pin,GPIO.OUT)
 	for i in range(1,100):
 		GPIO.output(pin,GPIO.HIGH)
