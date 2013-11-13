@@ -11,7 +11,7 @@ mail_host = "mail.139.com"
 mail_user = "toby82"
 mail_pass = "775825811"
 mail_postfix = "139.com"
-content =""
+content ="This is test pi mail!"
 
 
 class get_load_avg():
@@ -46,15 +46,23 @@ class get_load_avg():
 	
 
 def	blinkon(pin):
+	GPIO.setup(pin,GPIO.OUT)
 	GPIO.output(pin,GPIO.HIGH)
 	
 def blinkoff(pin):
+	GPIO.setup(pin,GPIO.OUT)
 	GPIO.output(pin,GPIO.LOW)
 
 def	buzzeron(pin):
-	GPIO.output(pin,GPIO.HIGH)
+	GPIO.setup(pin,GPIO.OUT)
+	for i in range(1,100):
+		GPIO.output(pin,GPIO.HIGH)
+		sleep(0.002)
+		GPIO.output(pin,GPIO.LOW)
+		sleep(0.002)
 	
 def buzzeroff(pin):
+	GPIO.setup(pin,GPIO.OUT)
 	GPIO.output(pin,GPIO.LOW)
 
 def send_mail(to_list,sub,context):
@@ -89,10 +97,10 @@ if __name__ == "__main__":
 '''
 	
 try:
-	pin = {'led1':17,'led2':21,'led3':22,'led4':23,'led5':24,'buzzer':25}
+	pin = {'led1':4,'led2':17,'led3':27,'led4':22,'led5':10,'led6':9,'buzzer':25}
 	GPIO.setmode(GPIO.BCM)
-	for p in pin.itervalues():
-		GPIO.setup(p,GPIO.OUT)
+	#for p in pin.itervalues():
+		#GPIO.setup(p,GPIO.OUT)
 	#pdb.set_trace()
 	snmpcmd = 'snmpwalk -v 2c -c public 192.168.1.6 .1.3.6.1.4.1.2021.10.1.3'
 	avg = get_load_avg(snmpcmd)	
@@ -137,7 +145,7 @@ try:
 			blinkon(pin['led4'])
 			blinkon(pin['led5'])
 			buzzeron(pin['buzzer'])
-			sendmail()
+			send_mail(mailto_list,"pi test","This is test pi mail")
 			print "load average: > 8"
 		#avg.get_load_avg5()
 		#avg.get_load_avg15()
