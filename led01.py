@@ -6,10 +6,10 @@ from time import sleep
 import RPi.GPIO as GPIO
 import smtplib
 from email.mime.text import MIMEText
-mailto_list = ["toby82@139.com"]
+mailto_list = ["xxx@139.com"]
 mail_host = "mail.139.com"
-mail_user = "toby82"
-mail_pass = "775825811"
+mail_user = "xxxx"
+mail_pass = "xxxxxx11"
 mail_postfix = "139.com"
 content ="This is test pi mail!"
 
